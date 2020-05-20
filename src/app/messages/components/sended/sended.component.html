@@ -1,0 +1,49 @@
+<div class="col-lg-10">
+    <h3>{{title}}</h3>
+
+    <!-- LISTADO DE MENSAJES ENVIADOS -->
+
+    <div class="people" *ngIf="messages">
+        <!-- LISTADO -->
+        <div *ngFor="let message of messages" class="item-user">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="image-user pull-left">
+                        <a href="">
+                            <img src="{{ url + 'get-image-user/' + message.emmiter.image }}" *ngIf="message.emmiter.image">
+                            <img src="assets/user.png" *ngIf="!message.emmiter.image" class="avatar-default">
+                        </a>
+
+                    </div>
+                    <div class="user-name pull-left">
+                        <p class="name-surname">
+                            <a [routerLink]="['/perfil', message.emmiter._id]">
+                                {{ message.emmiter.name + ' ' + message.emmiter.surname}}
+                             </a> |
+                            <span>
+                                Enviado a: <a [routerLink]="['/perfil', message.receiver._id]">  {{message.receiver.name + ' ' + message.receiver.surname }}</a>
+                            </span>
+                        </p>
+
+                        <p>
+                            {{message.text}}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGINACION -->
+        <ul class="pagination pull-right">
+            <li>
+                <a [routerLink]="['/mensajes/enviados' ,prev_page]">Anterior</a>
+            </li>
+            <li>
+                <a [routerLink]="['/mensajes/enviados' ,next_page]">Siguiente</a>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
